@@ -3,48 +3,41 @@
 
 <head>
     <script>
-
-        function playRockPaperScissors() {
-            // Possible choices for the computer
+        function getcomputerchoice() {
             const choices = ["rock", "paper", "scissors"];
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
 
-            // Generate a random computer choice (0, 1, or 2)
-            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-
-            // Get user input (Ensure case-insensitive comparison later)
-            let playerChoice;
-            while (true) {
-                playerChoice = prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
-
-                // Validate user input
-                if (choices.includes(playerChoice)) {
-                    break;
-                } else {
-                    console.log("Invalid choice! Enter rock, paper, or scissors:");
-                }
-            }
-
-            // Determine the winner
+        function playround(playerselection, computerselection) {
             let result;
-            if (playerChoice === computerChoice) {
+            if (playerselection === computerselection) {
                 result = "It's a tie!";
             } else if (
-                (playerChoice === "rock" && computerChoice === "scissors") ||
-                (playerChoice === "paper" && computerChoice === "rock") ||
-                (playerChoice === "scissors" && computerChoice === "paper")
+                (playerselection === "rock" && computerselection === "scissors") ||
+                (playerselection === "paper" && computerselection === "rock") ||
+                (playerselection === "scissors" && computerselection === "paper")
             ) {
-                result = "You Win!";
+                result = "You win " + playerselection + " beat! " + computerselection;
             } else {
-                result = "You Lose!";
+                result = "You Lose! " + computerselection + " beat " + playerselection;
             }
-
-            // Display the results
-            console.log(`You chose: ${playerChoice}`);
-            console.log(`Computer chose: ${computerChoice}`);
+            console.log('You chose: ${ playerselection }');
+            console.log('Computer chose: ${ computerselection }');
             console.log(result);
         }
 
-        playRockPaperScissors();
+        let playerselection;
+        let computerselection;
+        while (true) {
+            playerselection = prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
+            if (["rock", "paper", "scissors"].includes(playerselection)) {
+                break;
+            } else {
+                console.log("Invalid choice! Enter rock, paper, or scissors:");
+            }
+        }
+        computerselection = getcomputerchoice();
+        playround(playerselection, computerselection);
     </script>
 
 </head>
