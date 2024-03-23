@@ -1,2 +1,2 @@
 # rockpaper
-rock paper scissor simple game 
+javascript project to design a simple rock paper game 
